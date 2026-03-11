@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Menu, X, ChevronDown } from 'lucide-react'
 
 interface NavItem {
@@ -66,11 +67,13 @@ export default function Navigation() {
             className="flex items-center space-x-3 focus:outline-none focus:ring-2 focus:ring-fire-red focus:ring-offset-2 rounded"
             aria-label="TFS Volunteer Fire Department Home"
           >
-            <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center">
-              <img
+            <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center relative">
+              <Image
                 src="/logo.svg"
                 alt="TFS Volunteer Fire Department Logo"
-                className="w-full h-full object-contain"
+                width={48}
+                height={48}
+                className="object-contain"
               />
             </div>
             <div className="hidden md:block">

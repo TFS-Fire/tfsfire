@@ -141,7 +141,7 @@ export default function DonatePage() {
               </div>
               <div className="text-center p-6 bg-fire-red/5 rounded-lg">
                 <Heart className="w-12 h-12 mx-auto mb-4 text-fire-red" aria-hidden="true" />
-                <h3 className="font-bold mb-2">Firefighter's Fund</h3>
+                <h3 className="font-bold mb-2">Firefighter&apos;s Fund</h3>
                 <p className="text-sm text-fire-dark/70">
                   Supporting our volunteers
                 </p>
