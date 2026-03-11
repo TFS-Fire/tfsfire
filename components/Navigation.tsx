@@ -25,10 +25,10 @@ const navItems: NavItem[] = [
     submenu: [
       { label: 'Volunteer', href: '/volunteer' },
       { label: 'Events', href: '/events' },
-      { label: 'Safety Resources', href: '/safety-resources' },
+      { label: 'Resources', href: '/resources' },
     ],
   },
-  { href: '/donate', label: 'Donate' },
+  {/*{ href: '/donate', label: 'Donate' },*/}
   { href: '/news', label: 'News' },
   { href: '/contact', label: 'Contact' },
 ]
