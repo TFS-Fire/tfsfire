@@ -1,11 +1,14 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { X } from 'lucide-react'
 
+type GalleryImage = { id: number; src: string; alt: string; category: string }
+
 export default function GalleryPage() {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null)
+  const lightboxRef = useRef<HTMLDivElement>(null)
 
   // Placeholder gallery images - replace with actual images
   const galleryImages = [
@@ -86,10 +89,41 @@ export default function GalleryPage() {
   const categories = ['All', 'Wildfire Response', 'Training', 'Community', 'Education', 'Equipment', 'Station']
 
   const [selectedCategory, setSelectedCategory] = useState('All')
+  const previousFocusRef = useRef<HTMLElement | null>(null)
 
   const filteredImages = selectedCategory === 'All'
     ? galleryImages
     : galleryImages.filter(img => img.category === selectedCategory)
+
+  useEffect(() => {
+    if (!selectedImage) return
+    previousFocusRef.current = document.activeElement as HTMLElement | null
+    requestAnimationFrame(() => {
+      lightboxRef.current?.querySelector<HTMLElement>('button[aria-label="Close image viewer"]')?.focus()
+    })
+  }, [selectedImage])
+
+  useEffect(() => {
+    if (!selectedImage) return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSelectedImage(null)
+      if (e.key === 'Tab') {
+        const closeBtn = lightboxRef.current?.querySelector<HTMLElement>('button[aria-label="Close image viewer"]')
+        if (closeBtn && document.activeElement === closeBtn) {
+          e.preventDefault()
+          closeBtn.focus()
+        }
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [selectedImage])
+
+  useEffect(() => {
+    if (!selectedImage && previousFocusRef.current) {
+      previousFocusRef.current.focus()
+    }
+  }, [selectedImage])
 
   return (
     <>
@@ -125,10 +159,12 @@ export default function GalleryPage() {
           {/* Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {filteredImages.map((image) => (
-              <div
+              <button
                 key={image.id}
-                className="relative aspect-square cursor-pointer overflow-hidden rounded-lg group"
-                onClick={() => setSelectedImage(image.src)}
+                type="button"
+                onClick={() => setSelectedImage(image)}
+                className="relative aspect-square cursor-pointer overflow-hidden rounded-lg group text-left w-full p-0 border-0 bg-transparent"
+                aria-label={`View ${image.alt}`}
               >
                 <Image
                   src={image.src}
@@ -140,7 +176,7 @@ export default function GalleryPage() {
                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-fire-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                   <p className="text-white text-sm font-semibold">{image.category}</p>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         </div>
@@ -149,6 +185,7 @@ export default function GalleryPage() {
       {/* Lightbox */}
       {selectedImage && (
         <div
+          ref={lightboxRef}
           className="fixed inset-0 z-50 bg-fire-dark/95 flex items-center justify-center p-4"
           onClick={() => setSelectedImage(null)}
           role="dialog"
@@ -157,15 +194,15 @@ export default function GalleryPage() {
         >
           <button
             onClick={() => setSelectedImage(null)}
-            className="absolute top-4 right-4 text-white hover:text-fire-orange transition-colors focus:outline-none focus:ring-2 focus:ring-fire-red rounded p-2"
+            className="absolute top-4 right-4 text-white hover:text-fire-orange transition-colors focus:outline-none focus:ring-2 focus:ring-fire-red rounded p-2 z-10"
             aria-label="Close image viewer"
           >
             <X size={32} />
           </button>
           <div className="relative max-w-7xl max-h-[90vh] w-full h-full" onClick={(e) => e.stopPropagation()}>
             <Image
-              src={selectedImage}
-              alt="Gallery image"
+              src={selectedImage.src}
+              alt={selectedImage.alt}
               fill
               className="object-contain"
               sizes="90vw"

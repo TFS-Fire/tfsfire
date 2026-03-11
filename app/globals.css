@@ -70,12 +70,12 @@
   @apply outline-2 outline-offset-2 outline-fire-red;
 }
 
-/* Smooth scroll offset for fixed nav */
+/* Smooth scroll offset for fixed nav + emergency banner */
 html {
-  scroll-padding-top: 80px;
+  scroll-padding-top: 116px;
 }
 
-/* Body padding for fixed navigation */
+/* Body padding for fixed navigation + emergency banner */
 body {
-  padding-top: 80px;
+  padding-top: 116px;
 }

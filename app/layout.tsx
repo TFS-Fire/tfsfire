@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Navigation from '@/components/Navigation'
+import EmergencyBanner from '@/components/EmergencyBanner'
 import Footer from '@/components/Footer'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
@@ -46,7 +47,14 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-white focus:text-fire-red focus:rounded-lg focus:font-semibold focus:shadow-lg"
+        >
+          Skip to main content
+        </a>
         <Navigation />
+        <EmergencyBanner />
         <main id="main-content" role="main">
           {children}
         </main>

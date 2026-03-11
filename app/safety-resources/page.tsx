@@ -48,14 +48,10 @@ export default function SafetyResourcesPage() {
 
   const resources = [
     {
-      title: 'Home Fire Safety Checklist',
-      description: 'A comprehensive checklist to help make your home fire-safe.',
-      type: 'PDF',
-    },
-    {
-      title: 'Wildfire Preparedness Guide',
-      description: 'Step-by-step guide to preparing your property for wildfire season.',
-      type: 'PDF',
+      title: 'Firewise USA®',
+      description: 'NFPA program to help you prepare your property for wildfire season and create defensible space.',
+      type: 'External',
+      href: 'https://www.nfpa.org/education-and-research/wildfire/firewise-usa',
     },
     {
       title: 'Emergency Contact Card Template',
@@ -128,10 +124,22 @@ export default function SafetyResourcesPage() {
                 </div>
                 <h3 className="text-xl font-bold mb-2 text-fire-dark">{resource.title}</h3>
                 <p className="text-fire-dark/70 mb-4">{resource.description}</p>
-                <button className="text-fire-red hover:underline font-semibold flex items-center">
-                  Download Resource
-                  <span className="ml-2">→</span>
-                </button>
+                {'href' in resource ? (
+                  <a
+                    href={resource.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-fire-red hover:underline font-semibold flex items-center"
+                  >
+                    Visit Resource
+                    <span className="ml-2">→</span>
+                  </a>
+                ) : (
+                  <button className="text-fire-red hover:underline font-semibold flex items-center">
+                    Download Resource
+                    <span className="ml-2">→</span>
+                  </button>
+                )}
               </div>
             ))}
           </div>
