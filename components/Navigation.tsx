@@ -28,7 +28,6 @@ const navItems: NavItem[] = [
       { label: 'Resources', href: '/resources' },
     ],
   },
-  {/*{ href: '/donate', label: 'Donate' },*/}
   { href: '/news', label: 'News' },
   { href: '/contact', label: 'Contact' },
 ]
