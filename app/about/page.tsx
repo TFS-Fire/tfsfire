@@ -92,13 +92,13 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team Section */}
+      {/* Team Section 
       <section className="section-padding bg-fire-dark/5">
         <div className="container-custom">
           <h2 className="text-center mb-12">Leadership Team</h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {teamMembers.map((member, index) => (
-            {/*<div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden">
                 <div className="relative h-64">
                   <Image
                     src={member.image || ''}
@@ -106,7 +106,7 @@ export default function AboutPage() {
                     fill
                     className="object-cover"
                   />
-                </div>*/}
+                </div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-1">{member.name}</h3>
                   <p className="text-fire-orange font-semibold mb-3">{member.role}</p>
@@ -116,7 +116,7 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Values */}
       <section className="section-padding bg-white">
