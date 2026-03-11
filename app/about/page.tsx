@@ -11,13 +11,13 @@ export default function AboutPage() {
       name: 'Chief Isaiah Williams',
       role: 'Department Chief',
       bio: 'Chief Williams has served with TFS for over 10 years, bringing extensive experience in wildfire management, emergency response, and departmental leadership.',
-      image: '/chief2.png',
+      image: '/placeholder.png.webp',
     },
     {
       name: 'Chief Jarrell Miller',
       role: 'Station 1 Chief',
       bio: 'Chief Miller is responsible for the overall administration and operations of Station 1, supporting leadership, personnel, and day-to-day activities.',
-      image: '/jarrell3.png',
+      image: '/placeholder.png.webp',
     },
    /* {
       name: 'Chief Corey Graham',
@@ -28,7 +28,7 @@ export default function AboutPage() {
       name: 'Tristan Miske',
       role: 'Training Officer',
       bio: 'The Training Officer is responsible for coordinating training programs, maintaining certifications, and ensuring firefighters are prepared for both structural and wildland incidents.',
-      image: '/tristan1.png',
+      image: '/placeholder.png.webp',
     },
   ]
 
