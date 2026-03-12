@@ -8,6 +8,7 @@ import Footer from '@/components/Footer'
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://tfsfire.org'),
   title: {
     default: 'TFS Volunteer Fire Department',
     template: '%s | TFS Volunteer Fire Department',
@@ -27,11 +28,13 @@ export const metadata: Metadata = {
     siteName: 'TFS Volunteer Fire Department',
     title: 'TFS Volunteer Fire Department',
     description: 'Protecting Fortine and Beyond. Volunteer fire department serving the Fortine, Montana area.',
+    images: [{ url: '/og-image.gif', type: 'image/gif' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'TFS Volunteer Fire Department',
     description: 'Protecting Fortine and Beyond.',
+    images: ['/og-image.gif'],
   },
   robots: {
     index: true,
