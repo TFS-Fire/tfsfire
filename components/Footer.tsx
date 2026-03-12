@@ -49,7 +49,7 @@ export default function Footer() {
                   Volunteer
                 </Link>
               </li>
-              <li>
+              {/*<li>
                 <Link href="/donate" className="text-white/80 hover:text-fire-orange transition-colors focus:outline-none focus:ring-2 focus:ring-fire-red rounded">
                   Donate
                 </Link>
@@ -58,7 +58,7 @@ export default function Footer() {
                 <Link href="/gallery" className="text-white/80 hover:text-fire-orange transition-colors focus:outline-none focus:ring-2 focus:ring-fire-red rounded">
                   Gallery
                 </Link>
-              </li>
+              </li>*/}
             </ul>
           </div>
 
