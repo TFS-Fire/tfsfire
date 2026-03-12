@@ -28,7 +28,7 @@ const getArticle = (id: string) => {
           Community members are encouraged to visit the site regularly as new features, resources, and updates are added over time. The TFS Volunteer Fire Department appreciates the continued support of the community and looks forward to using this platform to strengthen public awareness and connection.
         </p>
       `,
-      date: '2026-01-13',
+      date: '2026-03-12',
       image: '/station1.jpg',
       category: 'Department News',
     },
