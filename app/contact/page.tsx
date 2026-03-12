@@ -58,7 +58,6 @@ export default function ContactPage() {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Information */}
             <div>
               <h2 className="text-3xl font-bold mb-6">Get in Touch</h2>
               <p className="text-lg mb-8 text-fire-dark/70">
@@ -212,22 +211,6 @@ export default function ContactPage() {
                       {errors.message.message}
                     </p>
                   )}
-                </div>
-
-                <div>
-                  <label htmlFor="file" className="block text-sm font-semibold mb-2">
-                    Attach File (Optional)
-                  </label>
-                  <input
-                    type="file"
-                    id="file"
-                    {...register('file')}
-                    className="w-full px-4 py-3 border border-fire-dark/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-fire-red"
-                    accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-                  />
-                  <p className="mt-1 text-sm text-fire-dark/60">
-                    Accepted formats: PDF, DOC, DOCX, JPG, PNG (Max 5MB)
-                  </p>
                 </div>
 
                 <button

@@ -10,7 +10,6 @@ export default function GalleryPage() {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null)
   const lightboxRef = useRef<HTMLDivElement>(null)
 
-  // Placeholder gallery images - replace with actual images
   const galleryImages = [
     {
       id: 1,

@@ -18,15 +18,12 @@ export default function EventsPage() {
   const [currentDate, setCurrentDate] = useState<Date>(new Date())
   const [selectedDate, setSelectedDate] = useState<Date>(new Date())
 
-  // Placeholder events - replace with API or CMS
-  // Using startOfDay to normalize dates and ensure proper comparison
+  // replace with API or CMS
   const today = new Date()
   const currentYear = today.getFullYear()
   const currentMonth = today.getMonth()
   const currentDay = today.getDate()
   
-  // Create events for the current month and next month
-  // Ensuring at least some events are in the future
   const events: Event[] = [
     {
       id: 1,
@@ -116,7 +113,6 @@ export default function EventsPage() {
     .filter((event) => {
       const todayStart = startOfDay(new Date())
       const eventDateStart = startOfDay(event.date)
-      // Include today's events and future events
       return !isBefore(eventDateStart, todayStart)
     })
     .sort((a, b) => a.date.getTime() - b.date.getTime())
@@ -139,10 +135,10 @@ export default function EventsPage() {
         <div className="container-custom">
           <div className="max-w-[1200px] mx-auto">
             <div className="grid lg:grid-cols-3 gap-8">
-              {/* Calendar Container - Desktop View */}
+              {/* Calendar Container - Desktop */}
               <div className="lg:col-span-2 hidden lg:block">
                 <div className="bg-white rounded-lg shadow-lg border border-gray-300 overflow-hidden">
-                  {/* Calendar Header */}
+                  {/* Header */}
                   <div className="bg-white border-b border-gray-300 px-6 py-5 flex items-center justify-between">
                     <button
                       onClick={previousMonth}
@@ -163,7 +159,7 @@ export default function EventsPage() {
                     </button>
                   </div>
 
-                  {/* Weekday Headers */}
+                  {/* Headers */}
                   <div className="grid grid-cols-7 bg-gray-50 border-b border-gray-200">
                     {weekdays.map((day) => (
                       <div
@@ -175,7 +171,7 @@ export default function EventsPage() {
                     ))}
                   </div>
 
-                  {/* Calendar Grid */}
+                  {/* Grid */}
                   <div className="grid grid-cols-7 border-t border-l border-gray-200">
                     {days.map((day, index) => {
                       const dayEvents = getEventsForDate(day)
@@ -242,10 +238,10 @@ export default function EventsPage() {
                 </div>
               </div>
 
-              {/* Mobile Calendar */}
+              {/* Mobile */}
               <div className="lg:hidden mb-8">
                 <div className="bg-white rounded-lg shadow-lg border border-gray-300 overflow-hidden">
-                  {/* Mobile Calendar Header */}
+                  {/* Mobile Header */}
                   <div className="bg-white border-b border-gray-200 px-4 py-4 flex items-center justify-between">
                     <button
                       onClick={previousMonth}
@@ -266,7 +262,7 @@ export default function EventsPage() {
                     </button>
                   </div>
 
-                  {/* Mobile Calendar Grid */}
+                  {/* Mobile Grid */}
                   <div className="p-2">
                     <div className="grid grid-cols-7 gap-1 mb-2">
                       {weekdays.map((day) => (
@@ -324,7 +320,7 @@ export default function EventsPage() {
                 </div>
               </div>
 
-              {/* Selected Date Events Panel */}
+              {/* Selected Dates */}
               <div className="lg:col-span-1">
                 <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 sticky top-24">
                   <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-200">
@@ -379,7 +375,7 @@ export default function EventsPage() {
         </div>
       </section>
 
-      {/* Mobile Events List View */}
+      {/* Mobile Events List */}
       <section className="lg:hidden section-padding bg-white">
         <div className="container-custom">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Upcoming Events</h2>

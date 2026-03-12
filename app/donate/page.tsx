@@ -284,7 +284,7 @@ export default function DonatePage() {
         </div>
       </section>
 
-      {/* Payment Flow Modal */}
+      {/* Payment Modal */}
       {showPaymentFlow && (
         <div
           className="fixed inset-0 z-50 bg-fire-dark/90 flex items-center justify-center p-4"
@@ -293,7 +293,6 @@ export default function DonatePage() {
           aria-label="Payment"
         >
           <div ref={modalRef} className="w-full max-w-md sm:max-w-lg md:max-w-xl bg-white rounded-xl shadow-2xl min-h-[20rem] max-h-[90vh] flex flex-col overflow-hidden" tabIndex={-1}>
-            {/* Payment Step */}
             {paymentStep === 'payment' && (
               <>
                 <div className="flex-shrink-0 p-6 border-b border-fire-dark/10">
@@ -408,7 +407,7 @@ export default function DonatePage() {
               </>
             )}
 
-            {/* Processing Step */}
+            {/* Processing */}
             {paymentStep === 'processing' && (
               <div className="p-12 text-center">
                 <div className="w-16 h-16 border-4 border-fire-red border-t-transparent rounded-full animate-spin mx-auto mb-6" />
@@ -417,7 +416,7 @@ export default function DonatePage() {
               </div>
             )}
 
-            {/* Success Step */}
+            {/* Success */}
             {paymentStep === 'success' && (
               <div className="p-8 text-center">
                 <div className="w-20 h-20 bg-fire-red/10 rounded-full flex items-center justify-center mx-auto mb-6">
