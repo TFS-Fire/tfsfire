@@ -10,23 +10,26 @@ const getArticle = (id: string) => {
       title: 'TFS Launches New Website',
       content: `
         <p>
-          The TFS Volunteer Fire Department formally announces the launch of its new official website, created to improve public access to information and enhance communication with the community it serves.
+          The TFS Volunteer Fire Department is proud to announce the launch of its new official website, created to provide residents and visitors with a reliable, centralized source of department information and public resources.
         </p>
         <p>
-          The website provides residents and visitors with centralized access to department information, including an overview of services, contact details, department updates, and public resources. The platform is intended to serve as a reliable and authoritative source for official communications from the department.
+          The website is intended to improve communication with the community by making important information easier to access. Visitors can use the site to learn more about the department, view contact information, access public safety resources, and stay informed on department news and updates.
         </p>
         <p>
-          The launch of the website reflects the department&apos;s ongoing commitment to transparency, preparedness, and community engagement. By modernizing its digital presence, the TFS Volunteer Fire Department aims to ensure timely dissemination of information and improve accessibility for the public.
+          As the website continues to develop, additional features and content will be added to better serve the community. Planned additions include expanded safety and preparedness resources, department news and announcements, event information, and other tools intended to improve public access to important information.
         </p>
         <p>
-          The website will be updated on an ongoing basis to reflect department news, operational updates, and relevant public information. Community members are encouraged to visit the site regularly for the most current and accurate information.
+          The department is also working toward adding online donation functionality to the website. This will provide community members with a convenient way to support the department’s mission, training efforts, equipment needs, and ongoing service to the area.
         </p>
         <p>
-          The TFS Volunteer Fire Department remains dedicated to protecting life and property through professional service, training, and community involvement. The department appreciates the continued support of the community and looks forward to using this platform to strengthen communication and public awareness.
+          The launch of the website reflects the department’s continued commitment to transparency, preparedness, and community involvement. By strengthening its digital presence, the TFS Volunteer Fire Department aims to improve accessibility, keep the public informed, and create a more effective platform for future communication and support.
+        </p>
+        <p>
+          Community members are encouraged to visit the site regularly as new features, resources, and updates are added over time. The TFS Volunteer Fire Department appreciates the continued support of the community and looks forward to using this platform to strengthen public awareness and connection.
         </p>
       `,
       date: '2026-01-13',
-      image: 'https://images.unsplash.com/photo-1577017040065-650ee4d43339?w=1920&q=80',
+      image: '/station1.jpg',
       category: 'Department News',
     },
   }
