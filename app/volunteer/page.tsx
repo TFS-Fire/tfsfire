@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { collection, addDoc } from 'firebase/firestore'
+import { db } from '@/lib/firebase'
 import { Users, Shield, Heart, CheckCircle, Send, AlertCircle } from 'lucide-react'
 
 interface VolunteerFormData {
@@ -32,12 +34,11 @@ export default function VolunteerPage() {
     setSubmitStatus('idle')
 
     try {
-      // In production, send to API endpoint
-      console.log('Volunteer application:', data)
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500))
-      
+      await addDoc(collection(db, 'volunteerSubmissions'), {
+        ...data,
+        createdAt: new Date().toISOString(),
+      })
+
       setSubmitStatus('success')
       reset()
     } catch (error) {

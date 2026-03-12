@@ -3,7 +3,6 @@ import { NextResponse } from 'next/server'
 export async function POST() {
   const response = NextResponse.json({ success: true })
   
-  // Clear the password cookie
   response.cookies.delete('site_password')
   
   return response

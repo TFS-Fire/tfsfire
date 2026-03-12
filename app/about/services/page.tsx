@@ -6,8 +6,6 @@ export const metadata = {
   description: 'TFS Volunteer Fire Department services including emergency response, fire prevention, community outreach, and specialized wildfire response.',
 }
 
-// This page is accessible at /about/services
-
 export default function ServicesPage() {
   const preventionTips = [
     'Install and maintain smoke detectors on every level of your home',

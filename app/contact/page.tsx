@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import emailjs from '@emailjs/browser'
+import { collection, addDoc } from 'firebase/firestore'
+import { db } from '@/lib/firebase'
 import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react'
 
 interface FormData {
@@ -23,24 +24,18 @@ export default function ContactPage() {
     setSubmitStatus('idle')
 
     try {
-      // EmailJS configuration - replace with credentials
-      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_id'
-      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_id'
-      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'public_key'
-
-      const templateParams = {
-        from_name: data.name,
-        from_email: data.email,
+      await addDoc(collection(db, 'contactSubmissions'), {
+        name: data.name,
+        email: data.email,
         subject: data.subject,
         message: data.message,
-      }
+        createdAt: new Date().toISOString(),
+      })
 
-      await emailjs.send(serviceId, templateId, templateParams, publicKey)
-      
       setSubmitStatus('success')
       reset()
     } catch (error) {
-      console.error('EmailJS error:', error)
+      console.error('Contact form error:', error)
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)

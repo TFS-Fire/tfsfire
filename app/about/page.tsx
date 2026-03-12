@@ -10,7 +10,7 @@ export default function AboutPage() {
     {
       name: 'Chief Isaiah Williams',
       role: 'Department Chief',
-      bio: 'Chief Williams has served with TFS for over 10 years, bringing extensive experience in wildfire management, emergency response, and departmental leadership.',
+      bio: 'Chief Williams has served with TFS for over 28 years, bringing extensive experience in wildfire management, emergency response, and departmental leadership.',
       image: '/placeholder.png.webp'
     },
     {
