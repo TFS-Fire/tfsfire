@@ -63,7 +63,7 @@ export default function EventsPage() {
     {
       id: 5,
       title: 'Board Meeting',
-      date: startOfDay(new Date(2026, 2, 25)),
+      date: startOfDay(new Date(2026, 2, 24)),
       time: '7:00 PM - 9:00 PM',
       location: 'Station 1',
       description: 'Board meeting for the TFS Volunteer Fire Department.',
