@@ -82,7 +82,7 @@ export default function Navigation() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-1 flex-1 justify-center">
+          <div className="hidden lg:flex items-center space-x-1 flex-1 justify-end mr-4">
             {navItems.map((item) => (
               <div
                 key={item.label}
@@ -142,6 +142,14 @@ export default function Navigation() {
               </div>
             ))}
           </div>
+
+          {/* Desktop Donate CTA */}
+          <Link
+            href="/donate"
+            className="hidden lg:inline-flex items-center px-5 py-2 bg-fire-red text-white font-semibold rounded-lg hover:bg-fire-red/90 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-fire-red focus:ring-offset-2 focus:ring-offset-fire-dark"
+          >
+            Donate
+          </Link>
 
           {/* Mobile Menu Button */}
           <button
@@ -204,6 +212,13 @@ export default function Navigation() {
                   )}
                 </div>
               ))}
+              <Link
+                href="/donate"
+                onClick={() => setIsOpen(false)}
+                className="block mx-4 mt-3 px-4 py-3 bg-fire-red text-white font-semibold text-center rounded-lg hover:bg-fire-red/90 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-fire-red"
+              >
+                Donate
+              </Link>
             </div>
           </div>
         )}

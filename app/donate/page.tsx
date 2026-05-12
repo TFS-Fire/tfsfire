@@ -1,104 +1,8 @@
-'use client'
+import { Heart, DollarSign, Shield, Users, CheckCircle, ExternalLink, Lock } from 'lucide-react'
 
-import { useState, useRef, useEffect } from 'react'
-import { Heart, DollarSign, Shield, Users, CheckCircle, CreditCard, ArrowLeft, Lock, Check } from 'lucide-react'
-
-const FOCUSABLE_SELECTOR = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-
-const DONATION_DESTINATIONS = [
-  { value: 'equipment', label: 'Equipment' },
-  { value: 'operations', label: 'Operations' },
-  { value: 'training', label: 'Training' },
-  { value: 'firefighters-fund', label: "Firefighter's Fund" },
-] as const
-
-type PaymentStep = 'payment' | 'processing' | 'success'
+const STRIPE_DONATION_URL = 'https://donate.stripe.com/cNi8wRc4O31kc2Eg596AM00'
 
 export default function DonatePage() {
-  const [selectedAmount, setSelectedAmount] = useState<number | null>(null)
-  const [customAmount, setCustomAmount] = useState('')
-  const [designateDestination, setDesignateDestination] = useState(false)
-  const [donationDestination, setDonationDestination] = useState<string>('equipment')
-
-  const [showPaymentFlow, setShowPaymentFlow] = useState(false)
-  const [paymentStep, setPaymentStep] = useState<PaymentStep>('payment')
-  const [donationAmount, setDonationAmount] = useState<number>(0)
-  const [donationDestinationFinal, setDonationDestinationFinal] = useState<string | undefined>(undefined)
-  const [confirmationId, setConfirmationId] = useState('')
-
-  const presetAmounts = [25, 50, 100, 250, 500]
-  const modalRef = useRef<HTMLDivElement>(null)
-  const previousFocusRef = useRef<HTMLElement | null>(null)
-
-  useEffect(() => {
-    if (!showPaymentFlow) return
-    previousFocusRef.current = document.activeElement as HTMLElement | null
-    const timer = requestAnimationFrame(() => {
-      const focusable = modalRef.current?.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)
-      focusable?.[0]?.focus()
-    })
-    return () => cancelAnimationFrame(timer)
-  }, [showPaymentFlow])
-
-  useEffect(() => {
-    if (!showPaymentFlow || !modalRef.current) return
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        if (paymentStep === 'payment') handleEditDonation()
-        else if (paymentStep === 'success') handleClosePaymentFlow()
-      }
-      if (e.key !== 'Tab') return
-      const focusable = Array.from(modalRef.current!.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR))
-      const first = focusable[0]
-      const last = focusable[focusable.length - 1]
-      if (e.shiftKey && document.activeElement === first && last) {
-        e.preventDefault()
-        last.focus()
-      } else if (!e.shiftKey && document.activeElement === last && first) {
-        e.preventDefault()
-        first.focus()
-      }
-    }
-    document.addEventListener('keydown', handleKeyDown)
-    return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [showPaymentFlow, paymentStep])
-
-  useEffect(() => {
-    if (!showPaymentFlow && previousFocusRef.current) {
-      previousFocusRef.current.focus()
-    }
-  }, [showPaymentFlow])
-
-  const handleDonate = () => {
-    const amount = selectedAmount || parseFloat(customAmount)
-    if (!amount || amount <= 0) {
-      alert('Please select or enter a donation amount')
-      return
-    }
-    setDonationAmount(amount)
-    setDonationDestinationFinal(designateDestination ? donationDestination : undefined)
-    setShowPaymentFlow(true)
-    setPaymentStep('payment')
-  }
-
-  const handleEditDonation = () => {
-    setShowPaymentFlow(false)
-  }
-
-  const handleSubmitPayment = () => {
-    setPaymentStep('processing')
-    setTimeout(() => {
-      setConfirmationId(`TFS-${Date.now().toString(36).toUpperCase()}`)
-      setPaymentStep('success')
-    }, 1500)
-  }
-
-  const handleClosePaymentFlow = () => {
-    setShowPaymentFlow(false)
-    setPaymentStep('payment')
-    setConfirmationId('')
-  }
-
   return (
     <>
       {/* Hero */}
@@ -177,269 +81,41 @@ export default function DonatePage() {
         </div>
       </section>
 
-      {/* Donation Form */}
+      {/* Donation CTA */}
       <section className="section-padding bg-fire-dark/5">
         <div className="container-custom">
-          <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg">
-            <h2 className="text-3xl font-bold mb-6 text-center">Make a Donation</h2>
+          <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg text-center">
+            <h2 className="text-3xl font-bold mb-4">Make a Donation</h2>
+            <p className="text-fire-dark/70 mb-8">
+              Donations are processed securely through Stripe. You&apos;ll be taken to
+              our donation page where you can choose your amount and payment method.
+            </p>
 
-            <div className="mb-8">
-              <label className="block text-sm font-semibold mb-4">
-                Select Amount
-              </label>
-              <div className="grid grid-cols-3 md:grid-cols-5 gap-4 mb-4">
-                {presetAmounts.map((amount) => (
-                  <button
-                    key={amount}
-                    type="button"
-                    onClick={() => {
-                      setSelectedAmount(amount)
-                      setCustomAmount('')
-                    }}
-                    className={`p-4 rounded-lg border-2 font-semibold transition-colors ${
-                      selectedAmount === amount
-                        ? 'border-fire-red bg-fire-red text-white'
-                        : 'border-fire-dark/20 hover:border-fire-red'
-                    }`}
-                  >
-                    ${amount}
-                  </button>
-                ))}
-              </div>
-              <div className="mt-4">
-                <label htmlFor="custom-amount" className="block text-sm font-semibold mb-2">
-                  Or enter custom amount
-                </label>
-                <div className="flex items-center">
-                  <span className="text-fire-dark/60 mr-2">$</span>
-                  <input
-                    type="number"
-                    id="custom-amount"
-                    value={customAmount}
-                    onChange={(e) => {
-                      setCustomAmount(e.target.value)
-                      setSelectedAmount(null)
-                    }}
-                    placeholder="0.00"
-                    min="1"
-                    step="0.01"
-                    className="flex-1 px-4 py-3 border border-fire-dark/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-fire-red"
-                  />
-                </div>
-              </div>
-            </div>
+            <a
+              href={STRIPE_DONATION_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary w-full text-lg py-4 inline-flex items-center justify-center gap-2"
+            >
+              Donate
+              <ExternalLink className="w-5 h-5" aria-hidden="true" />
+            </a>
 
-            <div className="mb-8">
-              <label className="flex items-start gap-3 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={designateDestination}
-                  onChange={(e) => setDesignateDestination(e.target.checked)}
-                  className="mt-1 w-4 h-4 rounded border-fire-dark/30 text-fire-red focus:ring-fire-red"
-                />
-                <span className="text-sm font-semibold">
-                  Choose your impact
-                </span>
-              </label>
-              {designateDestination && (
-                <div className="mt-4 pl-7 grid grid-cols-2 gap-3">
-                  {DONATION_DESTINATIONS.map(({ value, label }) => (
-                    <label
-                      key={value}
-                      className="flex items-center gap-2 p-3 rounded-lg border border-fire-dark/20 hover:bg-fire-dark/5 cursor-pointer transition-colors"
-                    >
-                      <input
-                        type="radio"
-                        name="donation-destination"
-                        value={value}
-                        checked={donationDestination === value}
-                        onChange={() => setDonationDestination(value)}
-                        className="w-4 h-4 text-fire-red focus:ring-fire-red"
-                      />
-                      <span className="text-sm font-medium">{label}</span>
-                    </label>
-                  ))}
-                </div>
-              )}
-            </div>
+            <p className="text-center text-sm text-fire-dark/60 mt-4 flex items-center justify-center gap-1.5">
+              <Lock className="w-3.5 h-3.5" aria-hidden="true" />
+              Secure payment processing via Stripe
+            </p>
 
-            <div className="mb-6 p-4 bg-fire-red/5 border-l-4 border-fire-red rounded">
+            <div className="mt-8 p-4 bg-fire-red/5 border-l-4 border-fire-red rounded text-left">
               <p className="text-sm text-fire-dark/70">
-                <strong>Note:</strong> TFS Volunteer Fire Department is a 501(c)(3) nonprofit organization. 
-                Your donation may be tax-deductible. Please consult with a tax professional for specific advice.
+                <strong>Note:</strong> TFS Volunteer Fire Department is a 501(c)(3)
+                nonprofit organization. Your donation may be tax-deductible. Please
+                consult with a tax professional for specific advice.
               </p>
             </div>
-
-            <button
-              onClick={handleDonate}
-              className="btn-primary w-full text-lg py-4"
-            >
-              Continue to Payment
-            </button>
-
-            <p className="text-center text-sm text-fire-dark/60 mt-4">
-              Secure payment processing via Stripe. Your information is protected.
-            </p>
           </div>
         </div>
       </section>
-
-      {/* Payment Modal */}
-      {showPaymentFlow && (
-        <div
-          className="fixed inset-0 z-50 bg-fire-dark/90 flex items-center justify-center p-4"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Payment"
-        >
-          <div ref={modalRef} className="w-full max-w-md sm:max-w-lg md:max-w-xl bg-white rounded-xl shadow-2xl min-h-[20rem] max-h-[90vh] flex flex-col overflow-hidden" tabIndex={-1}>
-            {paymentStep === 'payment' && (
-              <>
-                <div className="flex-shrink-0 p-6 border-b border-fire-dark/10">
-                  <div className="flex items-center justify-between">
-                    <h2 className="text-xl font-bold">Payment Details</h2>
-                    <button
-                      onClick={handleEditDonation}
-                      className="text-fire-dark/60 hover:text-fire-dark flex items-center gap-1 text-sm"
-                    >
-                      <ArrowLeft className="w-4 h-4" />
-                      Back
-                    </button>
-                  </div>
-                  <p className="text-sm text-fire-dark/60 mt-2">
-                    Donation: <span className="font-semibold text-fire-red">${donationAmount.toFixed(2)}</span>
-                  </p>
-                </div>
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault()
-                    handleSubmitPayment()
-                  }}
-                  className="flex flex-col flex-1 min-h-0 overflow-hidden"
-                >
-                  <div className="flex-1 overflow-y-auto p-6 space-y-4">
-                  <div>
-                    <label htmlFor="card-number" className="block text-sm font-semibold mb-2">
-                      Card Number
-                    </label>
-                    <div className="relative">
-                      <CreditCard className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-fire-dark/40" />
-                      <input
-                        id="card-number"
-                        type="text"
-                        placeholder="4242 4242 4242 4242"
-                        className="w-full pl-10 pr-4 py-3 border border-fire-dark/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-fire-red"
-                        maxLength={19}
-                      />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="expiry" className="block text-sm font-semibold mb-2">
-                        Expiry
-                      </label>
-                      <input
-                        id="expiry"
-                        type="text"
-                        placeholder="MM/YY"
-                        className="w-full px-4 py-3 border border-fire-dark/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-fire-red"
-                        maxLength={5}
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="cvc" className="block text-sm font-semibold mb-2">
-                        CVC
-                      </label>
-                      <input
-                        id="cvc"
-                        type="text"
-                        placeholder="123"
-                        className="w-full px-4 py-3 border border-fire-dark/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-fire-red"
-                        maxLength={4}
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <label htmlFor="card-name" className="block text-sm font-semibold mb-2">
-                      Name on Card
-                    </label>
-                    <input
-                      id="card-name"
-                      type="text"
-                      placeholder="John Smith"
-                      className="w-full px-4 py-3 border border-fire-dark/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-fire-red"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-semibold mb-2">
-                      Email (for receipt)
-                    </label>
-                    <input
-                      id="email"
-                      type="email"
-                      placeholder="you@example.com"
-                      className="w-full px-4 py-3 border border-fire-dark/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-fire-red"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="billing-address" className="block text-sm font-semibold mb-2">
-                      Billing Address
-                    </label>
-                    <input
-                      id="billing-address"
-                      type="text"
-                      placeholder="123 Main St, City, State ZIP"
-                      className="w-full px-4 py-3 border border-fire-dark/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-fire-red"
-                    />
-                  </div>
-                  </div>
-                  <div className="flex-shrink-0 p-6 pt-0 border-t border-fire-dark/10 space-y-3">
-                    <button type="submit" className="btn-primary w-full py-4 flex items-center justify-center gap-2">
-                      <Lock className="w-5 h-5" />
-                      Complete Donation — ${donationAmount.toFixed(2)}
-                    </button>
-                    <p className="text-center text-xs text-fire-dark/60 flex items-center justify-center gap-1">
-                      <Lock className="w-3.5 h-3.5" />
-                      Secured by Stripe. No data is stored.
-                    </p>
-                  </div>
-                </form>
-              </>
-            )}
-
-            {/* Processing */}
-            {paymentStep === 'processing' && (
-              <div className="p-12 text-center">
-                <div className="w-16 h-16 border-4 border-fire-red border-t-transparent rounded-full animate-spin mx-auto mb-6" />
-                <h3 className="text-xl font-bold mb-2">Processing Your Donation</h3>
-                <p className="text-fire-dark/60">Please wait...</p>
-              </div>
-            )}
-
-            {/* Success */}
-            {paymentStep === 'success' && (
-              <div className="p-8 text-center">
-                <div className="w-20 h-20 bg-fire-red/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Check className="w-10 h-10 text-fire-red" />
-                </div>
-                <h3 className="text-2xl font-bold mb-2">Thank You!</h3>
-                <p className="text-fire-dark/70 mb-6">
-                  Your donation of <span className="font-semibold text-fire-red">${donationAmount.toFixed(2)}</span>
-                  {donationDestinationFinal && (
-                    <> to <span className="font-semibold">{DONATION_DESTINATIONS.find((d) => d.value === donationDestinationFinal)?.label}</span></>
-                  )}{' '}
-                  has been received.
-                </p>
-                <p className="text-sm text-fire-dark/60 mb-2">Confirmation number</p>
-                <p className="font-mono font-semibold text-fire-dark mb-8">{confirmationId}</p>
-                <button onClick={handleClosePaymentFlow} className="btn-primary w-full py-4">
-                  Done
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
 
       {/* Other Ways to Support */}
       <section className="section-padding bg-white">
