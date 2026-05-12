@@ -2,8 +2,7 @@
 
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { collection, addDoc } from 'firebase/firestore'
-import { db } from '@/lib/firebase'
+import { sendEmail, CONTACT_TEMPLATE_ID } from '@/lib/emailjs'
 import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react'
 
 interface FormData {
@@ -24,12 +23,13 @@ export default function ContactPage() {
     setSubmitStatus('idle')
 
     try {
-      await addDoc(collection(db, 'contactSubmissions'), {
+      await sendEmail(CONTACT_TEMPLATE_ID, {
         name: data.name,
         email: data.email,
+        reply_to: data.email,
         subject: data.subject,
         message: data.message,
-        createdAt: new Date().toISOString(),
+        submitted_at: new Date().toLocaleString(),
       })
 
       setSubmitStatus('success')

@@ -2,8 +2,7 @@
 
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { collection, addDoc } from 'firebase/firestore'
-import { db } from '@/lib/firebase'
+import { sendEmail, VOLUNTEER_TEMPLATE_ID } from '@/lib/emailjs'
 import { Users, Shield, Heart, CheckCircle, Send, AlertCircle } from 'lucide-react'
 
 interface VolunteerFormData {
@@ -34,9 +33,25 @@ export default function VolunteerPage() {
     setSubmitStatus('idle')
 
     try {
-      await addDoc(collection(db, 'volunteerSubmissions'), {
-        ...data,
-        createdAt: new Date().toISOString(),
+      await sendEmail(VOLUNTEER_TEMPLATE_ID, {
+        first_name: data.firstName,
+        last_name: data.lastName,
+        full_name: `${data.firstName} ${data.lastName}`,
+        email: data.email,
+        reply_to: data.email,
+        phone: data.phone,
+        address: data.address,
+        city: data.city,
+        state: data.state,
+        zip_code: data.zipCode,
+        date_of_birth: data.dateOfBirth,
+        emergency_contact: data.emergencyContact,
+        emergency_phone: data.emergencyPhone,
+        experience: data.experience || '(none provided)',
+        motivation: data.motivation,
+        availability: data.availability,
+        background_check_consent: data.backgroundCheck ? 'Yes' : 'No',
+        submitted_at: new Date().toLocaleString(),
       })
 
       setSubmitStatus('success')

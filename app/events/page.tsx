@@ -60,7 +60,7 @@ export default function EventsPage() {
     {
       id: 5,
       title: 'Board Meeting',
-      date: startOfDay(new Date(2026, 2, 24)),
+      date: startOfDay(new Date(2026, 4, 12)),
       time: '7:00 PM - 9:00 PM',
       location: 'Station 1',
       description: 'Board meeting for the TFS Volunteer Fire Department.',
@@ -72,6 +72,14 @@ export default function EventsPage() {
       time: '7:00 PM - 9:00 PM',
       location: 'Station 1',
       description: 'Weekly training session for active volunteers covering firefighting techniques and equipment operation.',
+    },
+    {
+      id: 7,
+      title: 'Board Meeting',
+      date: startOfDay(new Date(2026, 5, 12)),
+      time: '7:00 PM - 9:00 PM',
+      location: 'Station 1',
+      description: 'Board meeting for the TFS Volunteer Fire Department.',
     },
   ]
 
