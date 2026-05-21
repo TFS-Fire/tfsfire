@@ -59,8 +59,8 @@ export default function RootLayout({
         </a>
         <header>
           <Navigation />
-          <EmergencyBanner />
         </header>
+        <EmergencyBanner />
         <main id="main-content">
           {children}
         </main>
