@@ -121,7 +121,7 @@ export default function SafetyResourcesPage() {
               >
                 <div className="flex items-start justify-between mb-3">
                   <FileText className="w-6 h-6 text-fire-red mr-3 flex-shrink-0" aria-hidden="true" />
-                  <span className="text-xs bg-fire-orange/10 text-fire-orange px-2 py-1 rounded font-semibold">
+                  <span className="text-xs bg-fire-orange/10 text-fire-orange-dark px-2 py-1 rounded font-semibold">
                     {resource.type}
                   </span>
                 </div>

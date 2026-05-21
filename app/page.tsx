@@ -88,11 +88,11 @@ export default function HomePage() {
               <div className="text-fire-dark font-semibold">Incident Responses</div>
             </div>
             <div className="text-center p-6 bg-fire-orange/5 rounded-lg border border-fire-orange/20">
-              <div className="text-4xl md:text-5xl font-bold text-fire-orange mb-2">{stats.volunteers}</div>
+              <div className="text-4xl md:text-5xl font-bold text-fire-orange-dark mb-2">{stats.volunteers}</div>
               <div className="text-fire-dark font-semibold">Active Volunteers</div>
             </div>
             <div className="text-center p-6 bg-fire-yellow/5 rounded-lg border border-fire-yellow/20">
-              <div className="text-4xl md:text-5xl font-bold text-fire-yellow mb-2">{stats.stations}</div>
+              <div className="text-4xl md:text-5xl font-bold text-fire-yellow-dark mb-2">{stats.stations}</div>
               <div className="text-fire-dark font-semibold">Fire Stations</div>
             </div>
             <div className="text-center p-6 bg-fire-red/5 rounded-lg border border-fire-red/20">

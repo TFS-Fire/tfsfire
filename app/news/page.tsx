@@ -47,7 +47,7 @@ export default function NewsPage() {
                   </div>
 
                   <div className="p-6">
-                    <div className="flex items-center text-fire-dark/60 text-sm mb-3">
+                    <div className="flex items-center text-fire-dark/70 text-sm mb-3">
                       <Calendar className="w-4 h-4 mr-2" aria-hidden="true" />
                       {new Date(article.date).toLocaleDateString('en-US', {
                         year: 'numeric',
@@ -77,30 +77,6 @@ export default function NewsPage() {
         </div>
       </section>
 
-      {/* Newsletter Signup */}
-      <section className="section-padding bg-fire-dark/5">
-        <div className="container-custom">
-          <div className="max-w-2xl mx-auto text-center bg-white p-8 rounded-lg shadow-lg">
-            <h2 className="mb-4">Stay Updated</h2>
-            <p className="text-lg mb-6 text-fire-dark/70">
-              Subscribe to receive news and updates from TFS Volunteer Fire Department directly in your inbox.
-            </p>
-
-            <form className="flex flex-col sm:flex-row gap-4">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 border border-fire-dark/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-fire-red"
-                aria-label="Email address"
-                required
-              />
-              <button type="submit" className="btn-primary">
-                Subscribe
-              </button>
-            </form>
-          </div>
-        </div>
-      </section>
     </>
   )
 }

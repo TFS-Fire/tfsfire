@@ -124,6 +124,15 @@ export default function GalleryPage() {
     }
   }, [selectedImage])
 
+  useEffect(() => {
+    if (!selectedImage) return
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = previousOverflow
+    }
+  }, [selectedImage])
+
   return (
     <>
       {/* Hero */}
@@ -189,7 +198,7 @@ export default function GalleryPage() {
           onClick={() => setSelectedImage(null)}
           role="dialog"
           aria-modal="true"
-          aria-label="Image viewer"
+          aria-label={`Image viewer: ${selectedImage.alt}`}
         >
           <button
             onClick={() => setSelectedImage(null)}

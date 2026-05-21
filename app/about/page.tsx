@@ -78,12 +78,12 @@ export default function AboutPage() {
                 <p className="text-sm text-fire-dark/70 mt-2">Strategically located for optimal coverage</p>
               </div>
               <div className="bg-fire-dark/5 p-6 rounded-lg">
-                <div className="text-3xl font-bold text-fire-orange mb-2">24</div>
+                <div className="text-3xl font-bold text-fire-orange-dark mb-2">24</div>
                 <div className="font-semibold">Active Volunteers</div>
                 <p className="text-sm text-fire-dark/70 mt-2">Dedicated community members</p>
               </div>
               <div className="bg-fire-dark/5 p-6 rounded-lg">
-                <div className="text-3xl font-bold text-fire-yellow mb-2">160+</div>
+                <div className="text-3xl font-bold text-fire-yellow-dark mb-2">160+</div>
                 <div className="font-semibold">Square Miles</div>
                 <p className="text-sm text-fire-dark/70 mt-2">Coverage area</p>
               </div>
@@ -129,11 +129,11 @@ export default function AboutPage() {
                 <p>Facing danger with determination and bravery to protect our community.</p>
               </div>
               <div className="p-6 border border-fire-orange/20 rounded-lg">
-                <h3 className="text-xl font-bold mb-3 text-fire-orange">Commitment</h3>
+                <h3 className="text-xl font-bold mb-3 text-fire-orange-dark">Commitment</h3>
                 <p>Dedicated service to our community, always ready to respond.</p>
               </div>
               <div className="p-6 border border-fire-yellow/20 rounded-lg">
-                <h3 className="text-xl font-bold mb-3 text-fire-yellow">Community</h3>
+                <h3 className="text-xl font-bold mb-3 text-fire-yellow-dark">Community</h3>
                 <p>Building strong relationships and partnerships with residents and organizations.</p>
               </div>
               <div className="p-6 border border-fire-red/20 rounded-lg">

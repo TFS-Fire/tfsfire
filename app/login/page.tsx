@@ -91,7 +91,7 @@ function LoginForm() {
           </form>
 
           <div className="mt-6 text-center">
-            <p className="text-sm text-fire-dark/60">
+            <p className="text-sm text-fire-dark/70">
               This is a temporary password protection for staging/preview purposes.
             </p>
           </div>

@@ -89,7 +89,7 @@ export default function ContactPage() {
                         (406) 882-4810
                       </a>
                     </p>
-                    <p className="text-sm text-fire-dark/60 mt-1">Non-emergency line</p>
+                    <p className="text-sm text-fire-dark/70 mt-1">Non-emergency line</p>
                   </div>
                 </div>
 
@@ -120,15 +120,21 @@ export default function ContactPage() {
             <div>
               <h2 className="text-3xl font-bold mb-6">Send a Message</h2>
               
-              {submitStatus === 'success' && (
-                <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center">
-                  <CheckCircle className="w-5 h-5 text-green-600 mr-2" aria-hidden="true" />
-                  <p className="text-green-800">Message sent successfully! We&apos;ll get back to you soon.</p>
-                </div>
-              )}
+              <div role="status" aria-live="polite" aria-atomic="true">
+                {submitStatus === 'success' && (
+                  <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center">
+                    <CheckCircle className="w-5 h-5 text-green-600 mr-2" aria-hidden="true" />
+                    <p className="text-green-800">Message sent successfully! We&apos;ll get back to you soon.</p>
+                  </div>
+                )}
+              </div>
 
               {submitStatus === 'error' && (
-                <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center">
+                <div
+                  role="alert"
+                  aria-live="assertive"
+                  className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center"
+                >
                   <AlertCircle className="w-5 h-5 text-red-600 mr-2" aria-hidden="true" />
                   <p className="text-red-800">There was an error sending your message. Please try again or call us directly.</p>
                 </div>
@@ -145,9 +151,10 @@ export default function ContactPage() {
                     {...register('name', { required: 'Name is required' })}
                     className="w-full px-4 py-3 border border-fire-dark/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-fire-red"
                     aria-invalid={errors.name ? 'true' : 'false'}
+                    aria-describedby={errors.name ? 'name-error' : undefined}
                   />
                   {errors.name && (
-                    <p className="mt-1 text-sm text-fire-red" role="alert">
+                    <p id="name-error" className="mt-1 text-sm text-fire-red" role="alert">
                       {errors.name.message}
                     </p>
                   )}
@@ -169,9 +176,10 @@ export default function ContactPage() {
                     })}
                     className="w-full px-4 py-3 border border-fire-dark/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-fire-red"
                     aria-invalid={errors.email ? 'true' : 'false'}
+                    aria-describedby={errors.email ? 'email-error' : undefined}
                   />
                   {errors.email && (
-                    <p className="mt-1 text-sm text-fire-red" role="alert">
+                    <p id="email-error" className="mt-1 text-sm text-fire-red" role="alert">
                       {errors.email.message}
                     </p>
                   )}
@@ -187,9 +195,10 @@ export default function ContactPage() {
                     {...register('subject', { required: 'Subject is required' })}
                     className="w-full px-4 py-3 border border-fire-dark/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-fire-red"
                     aria-invalid={errors.subject ? 'true' : 'false'}
+                    aria-describedby={errors.subject ? 'subject-error' : undefined}
                   />
                   {errors.subject && (
-                    <p className="mt-1 text-sm text-fire-red" role="alert">
+                    <p id="subject-error" className="mt-1 text-sm text-fire-red" role="alert">
                       {errors.subject.message}
                     </p>
                   )}
@@ -205,9 +214,10 @@ export default function ContactPage() {
                     {...register('message', { required: 'Message is required' })}
                     className="w-full px-4 py-3 border border-fire-dark/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-fire-red resize-none"
                     aria-invalid={errors.message ? 'true' : 'false'}
+                    aria-describedby={errors.message ? 'message-error' : undefined}
                   />
                   {errors.message && (
-                    <p className="mt-1 text-sm text-fire-red" role="alert">
+                    <p id="message-error" className="mt-1 text-sm text-fire-red" role="alert">
                       {errors.message.message}
                     </p>
                   )}

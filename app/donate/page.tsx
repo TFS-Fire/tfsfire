@@ -101,7 +101,7 @@ export default function DonatePage() {
               <ExternalLink className="w-5 h-5" aria-hidden="true" />
             </a>
 
-            <p className="text-center text-sm text-fire-dark/60 mt-4 flex items-center justify-center gap-1.5">
+            <p className="text-center text-sm text-fire-dark/70 mt-4 flex items-center justify-center gap-1.5">
               <Lock className="w-3.5 h-3.5" aria-hidden="true" />
               Secure payment processing via Stripe
             </p>

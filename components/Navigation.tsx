@@ -32,11 +32,17 @@ const navItems: NavItem[] = [
   { href: '/contact', label: 'Contact' },
 ]
 
+const submenuId = (label: string) =>
+  `submenu-${label.toLowerCase().replace(/\s+/g, '-')}`
+const MOBILE_MENU_ID = 'mobile-menu'
+
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const dropdownRefs = useRef<Record<string, HTMLDivElement | null>>({})
+  const dropdownTriggerRefs = useRef<Record<string, HTMLButtonElement | null>>({})
+  const mobileToggleRef = useRef<HTMLButtonElement | null>(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,6 +51,25 @@ export default function Navigation() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  useEffect(() => {
+    if (!openDropdown && !isOpen) return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return
+      if (openDropdown) {
+        const trigger = dropdownTriggerRefs.current[openDropdown]
+        setOpenDropdown(null)
+        trigger?.focus()
+        return
+      }
+      if (isOpen) {
+        setIsOpen(false)
+        mobileToggleRef.current?.focus()
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [openDropdown, isOpen])
 
   const toggleDropdown = (label: string) => {
     setOpenDropdown(openDropdown === label ? null : label)
@@ -104,10 +129,14 @@ export default function Navigation() {
                 {item.submenu ? (
                   <>
                     <button
+                      ref={(el) => {
+                        dropdownTriggerRefs.current[item.label] = el
+                      }}
                       onClick={() => toggleDropdown(item.label)}
                       className="flex items-center px-4 py-2 text-white hover:text-fire-orange transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-fire-red focus:ring-offset-2 rounded"
                       aria-expanded={openDropdown === item.label}
                       aria-haspopup="true"
+                      aria-controls={submenuId(item.label)}
                     >
                       {item.label}
                       <ChevronDown
@@ -118,7 +147,10 @@ export default function Navigation() {
                       />
                     </button>
                     {openDropdown === item.label && (
-                      <div className="absolute top-full left-0 mt-1 bg-fire-dark border border-fire-red/20 rounded-lg shadow-lg min-w-[200px] z-50">
+                      <div
+                        id={submenuId(item.label)}
+                        className="absolute top-full left-0 mt-1 bg-fire-dark border border-fire-red/20 rounded-lg shadow-lg min-w-[200px] z-50"
+                      >
                         {item.submenu.map((subItem) => (
                           <Link
                             key={subItem.href}
@@ -153,9 +185,11 @@ export default function Navigation() {
 
           {/* Mobile Menu Button */}
           <button
+            ref={mobileToggleRef}
             onClick={() => setIsOpen(!isOpen)}
             className="lg:hidden text-white p-2 focus:outline-none focus:ring-2 focus:ring-fire-red focus:ring-offset-2 rounded"
             aria-expanded={isOpen}
+            aria-controls={MOBILE_MENU_ID}
             aria-label="Toggle menu"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -164,7 +198,7 @@ export default function Navigation() {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="lg:hidden pb-4 border-t border-white/10">
+          <div id={MOBILE_MENU_ID} className="lg:hidden pb-4 border-t border-white/10">
             <div className="pt-4 space-y-2">
               {navItems.map((item) => (
                 <div key={item.label}>
@@ -174,6 +208,8 @@ export default function Navigation() {
                         onClick={() => toggleDropdown(item.label)}
                         className="w-full flex items-center justify-between px-4 py-2 text-white hover:bg-white/10 rounded transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-fire-red"
                         aria-expanded={openDropdown === item.label}
+                        aria-haspopup="true"
+                        aria-controls={`${submenuId(item.label)}-mobile`}
                       >
                         {item.label}
                         <ChevronDown
@@ -184,7 +220,7 @@ export default function Navigation() {
                         />
                       </button>
                       {openDropdown === item.label && (
-                        <div className="pl-6 space-y-1 mt-1">
+                        <div id={`${submenuId(item.label)}-mobile`} className="pl-6 space-y-1 mt-1">
                           {item.submenu.map((subItem) => (
                             <Link
                               key={subItem.href}

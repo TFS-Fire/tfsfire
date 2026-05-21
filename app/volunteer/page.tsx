@@ -152,17 +152,23 @@ export default function VolunteerPage() {
           <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-lg">
             <h2 className="text-3xl font-bold mb-6 text-center">Volunteer Application</h2>
 
-            {submitStatus === 'success' && (
-              <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center">
-                <CheckCircle className="w-5 h-5 text-green-600 mr-2" aria-hidden="true" />
-                <p className="text-green-800">
-                  Application submitted successfully! We&apos;ll review your application and contact you within 5-7 business days.
-                </p>
-              </div>
-            )}
+            <div role="status" aria-live="polite" aria-atomic="true">
+              {submitStatus === 'success' && (
+                <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center">
+                  <CheckCircle className="w-5 h-5 text-green-600 mr-2" aria-hidden="true" />
+                  <p className="text-green-800">
+                    Application submitted successfully! We&apos;ll review your application and contact you within 5-7 business days.
+                  </p>
+                </div>
+              )}
+            </div>
 
             {submitStatus === 'error' && (
-              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center">
+              <div
+                role="alert"
+                aria-live="assertive"
+                className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center"
+              >
                 <AlertCircle className="w-5 h-5 text-red-600 mr-2" aria-hidden="true" />
                 <p className="text-red-800">There was an error submitting your application. Please try again or contact us directly.</p>
               </div>
@@ -179,9 +185,11 @@ export default function VolunteerPage() {
                     id="firstName"
                     {...register('firstName', { required: 'First name is required' })}
                     className="w-full px-4 py-3 border border-fire-dark/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-fire-red"
+                    aria-invalid={errors.firstName ? 'true' : 'false'}
+                    aria-describedby={errors.firstName ? 'firstName-error' : undefined}
                   />
                   {errors.firstName && (
-                    <p className="mt-1 text-sm text-fire-red" role="alert">{errors.firstName.message}</p>
+                    <p id="firstName-error" className="mt-1 text-sm text-fire-red" role="alert">{errors.firstName.message}</p>
                   )}
                 </div>
 
@@ -194,9 +202,11 @@ export default function VolunteerPage() {
                     id="lastName"
                     {...register('lastName', { required: 'Last name is required' })}
                     className="w-full px-4 py-3 border border-fire-dark/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-fire-red"
+                    aria-invalid={errors.lastName ? 'true' : 'false'}
+                    aria-describedby={errors.lastName ? 'lastName-error' : undefined}
                   />
                   {errors.lastName && (
-                    <p className="mt-1 text-sm text-fire-red" role="alert">{errors.lastName.message}</p>
+                    <p id="lastName-error" className="mt-1 text-sm text-fire-red" role="alert">{errors.lastName.message}</p>
                   )}
                 </div>
               </div>
@@ -217,9 +227,11 @@ export default function VolunteerPage() {
                       },
                     })}
                     className="w-full px-4 py-3 border border-fire-dark/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-fire-red"
+                    aria-invalid={errors.email ? 'true' : 'false'}
+                    aria-describedby={errors.email ? 'email-error' : undefined}
                   />
                   {errors.email && (
-                    <p className="mt-1 text-sm text-fire-red" role="alert">{errors.email.message}</p>
+                    <p id="email-error" className="mt-1 text-sm text-fire-red" role="alert">{errors.email.message}</p>
                   )}
                 </div>
 
@@ -232,9 +244,11 @@ export default function VolunteerPage() {
                     id="phone"
                     {...register('phone', { required: 'Phone is required' })}
                     className="w-full px-4 py-3 border border-fire-dark/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-fire-red"
+                    aria-invalid={errors.phone ? 'true' : 'false'}
+                    aria-describedby={errors.phone ? 'phone-error' : undefined}
                   />
                   {errors.phone && (
-                    <p className="mt-1 text-sm text-fire-red" role="alert">{errors.phone.message}</p>
+                    <p id="phone-error" className="mt-1 text-sm text-fire-red" role="alert">{errors.phone.message}</p>
                   )}
                 </div>
               </div>
@@ -248,9 +262,11 @@ export default function VolunteerPage() {
                   id="address"
                   {...register('address', { required: 'Address is required' })}
                   className="w-full px-4 py-3 border border-fire-dark/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-fire-red"
+                  aria-invalid={errors.address ? 'true' : 'false'}
+                  aria-describedby={errors.address ? 'address-error' : undefined}
                 />
                 {errors.address && (
-                  <p className="mt-1 text-sm text-fire-red" role="alert">{errors.address.message}</p>
+                  <p id="address-error" className="mt-1 text-sm text-fire-red" role="alert">{errors.address.message}</p>
                 )}
               </div>
 
@@ -264,9 +280,11 @@ export default function VolunteerPage() {
                     id="city"
                     {...register('city', { required: 'City is required' })}
                     className="w-full px-4 py-3 border border-fire-dark/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-fire-red"
+                    aria-invalid={errors.city ? 'true' : 'false'}
+                    aria-describedby={errors.city ? 'city-error' : undefined}
                   />
                   {errors.city && (
-                    <p className="mt-1 text-sm text-fire-red" role="alert">{errors.city.message}</p>
+                    <p id="city-error" className="mt-1 text-sm text-fire-red" role="alert">{errors.city.message}</p>
                   )}
                 </div>
 
@@ -279,9 +297,11 @@ export default function VolunteerPage() {
                     id="state"
                     {...register('state', { required: 'State is required' })}
                     className="w-full px-4 py-3 border border-fire-dark/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-fire-red"
+                    aria-invalid={errors.state ? 'true' : 'false'}
+                    aria-describedby={errors.state ? 'state-error' : undefined}
                   />
                   {errors.state && (
-                    <p className="mt-1 text-sm text-fire-red" role="alert">{errors.state.message}</p>
+                    <p id="state-error" className="mt-1 text-sm text-fire-red" role="alert">{errors.state.message}</p>
                   )}
                 </div>
 
@@ -294,9 +314,11 @@ export default function VolunteerPage() {
                     id="zipCode"
                     {...register('zipCode', { required: 'ZIP code is required' })}
                     className="w-full px-4 py-3 border border-fire-dark/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-fire-red"
+                    aria-invalid={errors.zipCode ? 'true' : 'false'}
+                    aria-describedby={errors.zipCode ? 'zipCode-error' : undefined}
                   />
                   {errors.zipCode && (
-                    <p className="mt-1 text-sm text-fire-red" role="alert">{errors.zipCode.message}</p>
+                    <p id="zipCode-error" className="mt-1 text-sm text-fire-red" role="alert">{errors.zipCode.message}</p>
                   )}
                 </div>
               </div>
@@ -310,9 +332,11 @@ export default function VolunteerPage() {
                   id="dateOfBirth"
                   {...register('dateOfBirth', { required: 'Date of birth is required' })}
                   className="w-full px-4 py-3 border border-fire-dark/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-fire-red"
+                  aria-invalid={errors.dateOfBirth ? 'true' : 'false'}
+                  aria-describedby={errors.dateOfBirth ? 'dateOfBirth-error' : undefined}
                 />
                 {errors.dateOfBirth && (
-                  <p className="mt-1 text-sm text-fire-red" role="alert">{errors.dateOfBirth.message}</p>
+                  <p id="dateOfBirth-error" className="mt-1 text-sm text-fire-red" role="alert">{errors.dateOfBirth.message}</p>
                 )}
               </div>
 
@@ -326,9 +350,11 @@ export default function VolunteerPage() {
                     id="emergencyContact"
                     {...register('emergencyContact', { required: 'Emergency contact is required' })}
                     className="w-full px-4 py-3 border border-fire-dark/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-fire-red"
+                    aria-invalid={errors.emergencyContact ? 'true' : 'false'}
+                    aria-describedby={errors.emergencyContact ? 'emergencyContact-error' : undefined}
                   />
                   {errors.emergencyContact && (
-                    <p className="mt-1 text-sm text-fire-red" role="alert">{errors.emergencyContact.message}</p>
+                    <p id="emergencyContact-error" className="mt-1 text-sm text-fire-red" role="alert">{errors.emergencyContact.message}</p>
                   )}
                 </div>
 
@@ -341,9 +367,11 @@ export default function VolunteerPage() {
                     id="emergencyPhone"
                     {...register('emergencyPhone', { required: 'Emergency phone is required' })}
                     className="w-full px-4 py-3 border border-fire-dark/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-fire-red"
+                    aria-invalid={errors.emergencyPhone ? 'true' : 'false'}
+                    aria-describedby={errors.emergencyPhone ? 'emergencyPhone-error' : undefined}
                   />
                   {errors.emergencyPhone && (
-                    <p className="mt-1 text-sm text-fire-red" role="alert">{errors.emergencyPhone.message}</p>
+                    <p id="emergencyPhone-error" className="mt-1 text-sm text-fire-red" role="alert">{errors.emergencyPhone.message}</p>
                   )}
                 </div>
               </div>
@@ -371,9 +399,11 @@ export default function VolunteerPage() {
                   {...register('motivation', { required: 'Please tell us why you want to volunteer' })}
                   placeholder="Tell us about your motivation to serve as a volunteer firefighter..."
                   className="w-full px-4 py-3 border border-fire-dark/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-fire-red resize-none"
+                  aria-invalid={errors.motivation ? 'true' : 'false'}
+                  aria-describedby={errors.motivation ? 'motivation-error' : undefined}
                 />
                 {errors.motivation && (
-                  <p className="mt-1 text-sm text-fire-red" role="alert">{errors.motivation.message}</p>
+                  <p id="motivation-error" className="mt-1 text-sm text-fire-red" role="alert">{errors.motivation.message}</p>
                 )}
               </div>
 
@@ -387,9 +417,11 @@ export default function VolunteerPage() {
                   {...register('availability', { required: 'Please describe your availability' })}
                   placeholder="Describe your availability for training and emergency response..."
                   className="w-full px-4 py-3 border border-fire-dark/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-fire-red resize-none"
+                  aria-invalid={errors.availability ? 'true' : 'false'}
+                  aria-describedby={errors.availability ? 'availability-error' : undefined}
                 />
                 {errors.availability && (
-                  <p className="mt-1 text-sm text-fire-red" role="alert">{errors.availability.message}</p>
+                  <p id="availability-error" className="mt-1 text-sm text-fire-red" role="alert">{errors.availability.message}</p>
                 )}
               </div>
 
@@ -401,6 +433,8 @@ export default function VolunteerPage() {
                     required: 'You must agree to a background check',
                   })}
                   className="mt-1 mr-3 w-5 h-5 text-fire-red focus:ring-fire-red"
+                  aria-invalid={errors.backgroundCheck ? 'true' : 'false'}
+                  aria-describedby={errors.backgroundCheck ? 'backgroundCheck-error' : undefined}
                 />
                 <label htmlFor="backgroundCheck" className="text-sm text-fire-dark/70">
                   I understand that a background check may be required, 
@@ -408,7 +442,7 @@ export default function VolunteerPage() {
                 </label>
               </div>
               {errors.backgroundCheck && (
-                <p className="text-sm text-fire-red" role="alert">{errors.backgroundCheck.message}</p>
+                <p id="backgroundCheck-error" className="text-sm text-fire-red" role="alert">{errors.backgroundCheck.message}</p>
               )}
 
               <button
