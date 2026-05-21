@@ -95,7 +95,7 @@ export default function Footer() {
               For emergencies, dial <strong className="text-fire-red">9-1-1</strong>
             </p>
             <p className="text-white/80 text-sm">
-              For non-emergency inquiries, use our <Link href="/contact" className="text-fire-orange hover:underline focus:outline-none focus:ring-2 focus:ring-fire-red rounded">contact form</Link>.
+              For non-emergency inquiries, use our <Link href="/contact" className="text-fire-orange underline focus:outline-none focus:ring-2 focus:ring-fire-red rounded">contact form</Link>.
             </p>
           </div>
         </div>

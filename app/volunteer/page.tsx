@@ -91,14 +91,14 @@ export default function VolunteerPage() {
                 </p>
               </div>
               <div className="text-center p-6 bg-fire-orange/5 rounded-lg">
-                <Users className="w-12 h-12 mx-auto mb-4 text-fire-orange" aria-hidden="true" />
+                <Users className="w-12 h-12 mx-auto mb-4 text-fire-orange-dark" aria-hidden="true" />
                 <h3 className="font-bold mb-2">Join a Team</h3>
                 <p className="text-sm text-fire-dark/70">
                   Work alongside dedicated, professional volunteers
                 </p>
               </div>
               <div className="text-center p-6 bg-fire-yellow/5 rounded-lg">
-                <Heart className="w-12 h-12 mx-auto mb-4 text-fire-yellow" aria-hidden="true" />
+                <Heart className="w-12 h-12 mx-auto mb-4 text-fire-yellow-dark" aria-hidden="true" />
                 <h3 className="font-bold mb-2">Give Back</h3>
                 <p className="text-sm text-fire-dark/70">
                   Serve your community with pride and purpose

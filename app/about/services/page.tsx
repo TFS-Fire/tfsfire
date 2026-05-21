@@ -67,7 +67,7 @@ export default function ServicesPage() {
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center mb-6">
-              <Flame className="w-12 h-12 text-fire-orange mr-4" aria-hidden="true" />
+              <Flame className="w-12 h-12 text-fire-orange-dark mr-4" aria-hidden="true" />
               <h2 className="text-3xl">Wildfire Response</h2>
             </div>
             <p className="text-lg mb-6">
@@ -78,19 +78,19 @@ export default function ServicesPage() {
                 <h3 className="text-xl font-bold mb-4">Capabilities</h3>
                 <ul className="space-y-2">
                   <li className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-fire-orange mr-2 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                    <CheckCircle className="w-5 h-5 text-fire-orange-dark mr-2 mt-0.5 flex-shrink-0" aria-hidden="true" />
                     <span>Wildland fire suppression and containment</span>
                   </li>
                   <li className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-fire-orange mr-2 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                    <CheckCircle className="w-5 h-5 text-fire-orange-dark mr-2 mt-0.5 flex-shrink-0" aria-hidden="true" />
                     <span>Structure protection during wildfires</span>
                   </li>
                   <li className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-fire-orange mr-2 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                    <CheckCircle className="w-5 h-5 text-fire-orange-dark mr-2 mt-0.5 flex-shrink-0" aria-hidden="true" />
                     <span>Fire line construction and maintenance</span>
                   </li>
                   <li className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-fire-orange mr-2 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                    <CheckCircle className="w-5 h-5 text-fire-orange-dark mr-2 mt-0.5 flex-shrink-0" aria-hidden="true" />
                     <span>Mutual aid support for regional incidents</span>
                   </li>
                 </ul>
@@ -99,19 +99,19 @@ export default function ServicesPage() {
                 <h3 className="text-xl font-bold mb-4">Equipment</h3>
                 <ul className="space-y-2">
                   <li className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-fire-orange mr-2 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                    <CheckCircle className="w-5 h-5 text-fire-orange-dark mr-2 mt-0.5 flex-shrink-0" aria-hidden="true" />
                     <span>Wildland fire engines and tankers</span>
                   </li>
                   <li className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-fire-orange mr-2 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                    <CheckCircle className="w-5 h-5 text-fire-orange-dark mr-2 mt-0.5 flex-shrink-0" aria-hidden="true" />
                     <span>Portable pumps and water supply systems</span>
                   </li>
                   <li className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-fire-orange mr-2 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                    <CheckCircle className="w-5 h-5 text-fire-orange-dark mr-2 mt-0.5 flex-shrink-0" aria-hidden="true" />
                     <span>Specialized wildland firefighting gear</span>
                   </li>
                   <li className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-fire-orange mr-2 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                    <CheckCircle className="w-5 h-5 text-fire-orange-dark mr-2 mt-0.5 flex-shrink-0" aria-hidden="true" />
                     <span>Communication and GPS equipment</span>
                   </li>
                 </ul>
@@ -126,7 +126,7 @@ export default function ServicesPage() {
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center mb-6">
-              <Calendar className="w-12 h-12 text-fire-yellow mr-4" aria-hidden="true" />
+              <Calendar className="w-12 h-12 text-fire-yellow-dark mr-4" aria-hidden="true" />
               <h2 className="text-3xl">Fire Prevention</h2>
             </div>
             <p className="text-lg mb-6">

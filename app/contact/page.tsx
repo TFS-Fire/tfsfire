@@ -80,7 +80,7 @@ export default function ContactPage() {
 
                 <div className="flex items-start space-x-4">
                   <div className="bg-fire-orange/10 p-3 rounded-lg">
-                    <Phone className="w-6 h-6 text-fire-orange" aria-hidden="true" />
+                    <Phone className="w-6 h-6 text-fire-orange-dark" aria-hidden="true" />
                   </div>
                   <div>
                     <h3 className="font-bold mb-1">Phone</h3>
@@ -95,7 +95,7 @@ export default function ContactPage() {
 
                 <div className="flex items-start space-x-4">
                   <div className="bg-fire-yellow/10 p-3 rounded-lg">
-                    <Mail className="w-6 h-6 text-fire-yellow" aria-hidden="true" />
+                    <Mail className="w-6 h-6 text-fire-yellow-dark" aria-hidden="true" />
                   </div>
                   <div>
                     <h3 className="font-bold mb-1">Email</h3>
