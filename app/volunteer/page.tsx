@@ -178,7 +178,7 @@ export default function VolunteerPage() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="firstName" className="block text-sm font-semibold mb-2">
-                    First Name <span className="text-fire-red">*</span>
+                    First Name <span className="text-fire-red" aria-hidden="true">*</span><span className="sr-only"> (required)</span>
                   </label>
                   <input
                     type="text"
@@ -195,7 +195,7 @@ export default function VolunteerPage() {
 
                 <div>
                   <label htmlFor="lastName" className="block text-sm font-semibold mb-2">
-                    Last Name <span className="text-fire-red">*</span>
+                    Last Name <span className="text-fire-red" aria-hidden="true">*</span><span className="sr-only"> (required)</span>
                   </label>
                   <input
                     type="text"
@@ -214,7 +214,7 @@ export default function VolunteerPage() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="email" className="block text-sm font-semibold mb-2">
-                    Email <span className="text-fire-red">*</span>
+                    Email <span className="text-fire-red" aria-hidden="true">*</span><span className="sr-only"> (required)</span>
                   </label>
                   <input
                     type="email"
@@ -237,7 +237,7 @@ export default function VolunteerPage() {
 
                 <div>
                   <label htmlFor="phone" className="block text-sm font-semibold mb-2">
-                    Phone <span className="text-fire-red">*</span>
+                    Phone <span className="text-fire-red" aria-hidden="true">*</span><span className="sr-only"> (required)</span>
                   </label>
                   <input
                     type="tel"
@@ -255,7 +255,7 @@ export default function VolunteerPage() {
 
               <div>
                 <label htmlFor="address" className="block text-sm font-semibold mb-2">
-                  Street Address <span className="text-fire-red">*</span>
+                  Street Address <span className="text-fire-red" aria-hidden="true">*</span><span className="sr-only"> (required)</span>
                 </label>
                 <input
                   type="text"
@@ -273,7 +273,7 @@ export default function VolunteerPage() {
               <div className="grid md:grid-cols-3 gap-6">
                 <div>
                   <label htmlFor="city" className="block text-sm font-semibold mb-2">
-                    City <span className="text-fire-red">*</span>
+                    City <span className="text-fire-red" aria-hidden="true">*</span><span className="sr-only"> (required)</span>
                   </label>
                   <input
                     type="text"
@@ -290,7 +290,7 @@ export default function VolunteerPage() {
 
                 <div>
                   <label htmlFor="state" className="block text-sm font-semibold mb-2">
-                    State <span className="text-fire-red">*</span>
+                    State <span className="text-fire-red" aria-hidden="true">*</span><span className="sr-only"> (required)</span>
                   </label>
                   <input
                     type="text"
@@ -307,7 +307,7 @@ export default function VolunteerPage() {
 
                 <div>
                   <label htmlFor="zipCode" className="block text-sm font-semibold mb-2">
-                    ZIP Code <span className="text-fire-red">*</span>
+                    ZIP Code <span className="text-fire-red" aria-hidden="true">*</span><span className="sr-only"> (required)</span>
                   </label>
                   <input
                     type="text"
@@ -325,7 +325,7 @@ export default function VolunteerPage() {
 
               <div>
                 <label htmlFor="dateOfBirth" className="block text-sm font-semibold mb-2">
-                  Date of Birth <span className="text-fire-red">*</span>
+                  Date of Birth <span className="text-fire-red" aria-hidden="true">*</span><span className="sr-only"> (required)</span>
                 </label>
                 <input
                   type="date"
@@ -343,7 +343,7 @@ export default function VolunteerPage() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="emergencyContact" className="block text-sm font-semibold mb-2">
-                    Emergency Contact Name <span className="text-fire-red">*</span>
+                    Emergency Contact Name <span className="text-fire-red" aria-hidden="true">*</span><span className="sr-only"> (required)</span>
                   </label>
                   <input
                     type="text"
@@ -360,7 +360,7 @@ export default function VolunteerPage() {
 
                 <div>
                   <label htmlFor="emergencyPhone" className="block text-sm font-semibold mb-2">
-                    Emergency Contact Phone <span className="text-fire-red">*</span>
+                    Emergency Contact Phone <span className="text-fire-red" aria-hidden="true">*</span><span className="sr-only"> (required)</span>
                   </label>
                   <input
                     type="tel"
@@ -391,7 +391,7 @@ export default function VolunteerPage() {
 
               <div>
                 <label htmlFor="motivation" className="block text-sm font-semibold mb-2">
-                  Why do you want to volunteer? <span className="text-fire-red">*</span>
+                  Why do you want to volunteer? <span className="text-fire-red" aria-hidden="true">*</span><span className="sr-only"> (required)</span>
                 </label>
                 <textarea
                   id="motivation"
@@ -409,7 +409,7 @@ export default function VolunteerPage() {
 
               <div>
                 <label htmlFor="availability" className="block text-sm font-semibold mb-2">
-                  Availability <span className="text-fire-red">*</span>
+                  Availability <span className="text-fire-red" aria-hidden="true">*</span><span className="sr-only"> (required)</span>
                 </label>
                 <textarea
                   id="availability"
@@ -438,7 +438,7 @@ export default function VolunteerPage() {
                 />
                 <label htmlFor="backgroundCheck" className="text-sm text-fire-dark/70">
                   I understand that a background check may be required, 
-                  and I consent to these checks. <span className="text-fire-red">*</span>
+                  and I consent to these checks. <span className="text-fire-red" aria-hidden="true">*</span><span className="sr-only"> (required)</span>
                 </label>
               </div>
               {errors.backgroundCheck && (

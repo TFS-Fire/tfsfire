@@ -134,13 +134,20 @@ export default function SafetyResourcesPage() {
                     {...(!resource.download && { target: '_blank', rel: 'noopener noreferrer' })}
                     className="text-fire-red hover:underline font-semibold flex items-center"
                   >
-                    {resource.download ? 'Download Resource' : 'Visit Resource'}
-                    <span className="ml-2">→</span>
+                    {resource.download ? 'Download' : 'Visit'} {resource.title}
+                    <span className="sr-only">
+                      {resource.type === 'PDF' ? ' (PDF)' : ''}
+                      {!resource.download ? ' (opens in new tab)' : ''}
+                    </span>
+                    <span className="ml-2" aria-hidden="true">→</span>
                   </a>
                 ) : (
                   <button className="text-fire-red hover:underline font-semibold flex items-center">
-                    Download Resource
-                    <span className="ml-2">→</span>
+                    Download {resource.title}
+                    <span className="sr-only">
+                      {resource.type === 'PDF' ? ' (PDF)' : ''}
+                    </span>
+                    <span className="ml-2" aria-hidden="true">→</span>
                   </button>
                 )}
               </div>

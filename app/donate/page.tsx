@@ -98,6 +98,7 @@ export default function DonatePage() {
               className="btn-primary w-full text-lg py-4 inline-flex items-center justify-center gap-2"
             >
               Donate
+              <span className="sr-only">(opens in new tab)</span>
               <ExternalLink className="w-5 h-5" aria-hidden="true" />
             </a>
 

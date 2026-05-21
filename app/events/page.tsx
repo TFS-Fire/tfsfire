@@ -330,7 +330,13 @@ export default function EventsPage() {
 
               {/* Selected Dates */}
               <div className="lg:col-span-1">
-                <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 sticky top-24">
+                <div
+                  className="bg-white rounded-lg shadow-md border border-gray-200 p-6 sticky top-24"
+                  role="region"
+                  aria-live="polite"
+                  aria-atomic="true"
+                  aria-label={`Events on ${format(selectedDate, 'MMMM d, yyyy')}`}
+                >
                   <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-200">
                     {format(selectedDate, 'MMMM d, yyyy')}
                   </h2>

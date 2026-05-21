@@ -3,7 +3,7 @@ import { Facebook, Twitter, Mail, Phone, MapPin } from 'lucide-react'
 
 export default function Footer() {
   return (
-    <footer className="bg-fire-dark text-white section-padding" role="contentinfo">
+    <footer className="bg-fire-dark text-white section-padding">
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* About Section */}
@@ -18,7 +18,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white/80 hover:text-fire-orange transition-colors focus:outline-none focus:ring-2 focus:ring-fire-red rounded"
-                aria-label="Facebook"
+                aria-label="Facebook (opens in new tab)"
               >
                 <Facebook size={24} />
               </a>

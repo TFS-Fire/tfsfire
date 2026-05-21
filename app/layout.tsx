@@ -57,9 +57,11 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        <Navigation />
-        <EmergencyBanner />
-        <main id="main-content" role="main">
+        <header>
+          <Navigation />
+          <EmergencyBanner />
+        </header>
+        <main id="main-content">
           {children}
         </main>
         <Footer />

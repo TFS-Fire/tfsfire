@@ -143,7 +143,7 @@ export default function ContactPage() {
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-semibold mb-2">
-                    Name <span className="text-fire-red">*</span>
+                    Name <span className="text-fire-red" aria-hidden="true">*</span><span className="sr-only"> (required)</span>
                   </label>
                   <input
                     type="text"
@@ -162,7 +162,7 @@ export default function ContactPage() {
 
                 <div>
                   <label htmlFor="email" className="block text-sm font-semibold mb-2">
-                    Email <span className="text-fire-red">*</span>
+                    Email <span className="text-fire-red" aria-hidden="true">*</span><span className="sr-only"> (required)</span>
                   </label>
                   <input
                     type="email"
@@ -187,7 +187,7 @@ export default function ContactPage() {
 
                 <div>
                   <label htmlFor="subject" className="block text-sm font-semibold mb-2">
-                    Subject <span className="text-fire-red">*</span>
+                    Subject <span className="text-fire-red" aria-hidden="true">*</span><span className="sr-only"> (required)</span>
                   </label>
                   <input
                     type="text"
@@ -206,7 +206,7 @@ export default function ContactPage() {
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-semibold mb-2">
-                    Message <span className="text-fire-red">*</span>
+                    Message <span className="text-fire-red" aria-hidden="true">*</span><span className="sr-only"> (required)</span>
                   </label>
                   <textarea
                     id="message"

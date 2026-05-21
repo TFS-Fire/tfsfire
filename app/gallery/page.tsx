@@ -152,8 +152,10 @@ export default function GalleryPage() {
             {categories.map((category) => (
               <button
                 key={category}
+                type="button"
                 onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-2 rounded-full font-semibold transition-colors ${
+                aria-pressed={selectedCategory === category}
+                className={`px-6 py-2 rounded-full font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-fire-red focus:ring-offset-2 ${
                   selectedCategory === category
                     ? 'bg-fire-red text-white'
                     : 'bg-fire-dark/5 text-fire-dark hover:bg-fire-dark/10'
