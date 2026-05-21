@@ -92,7 +92,7 @@ export default function Footer() {
           <div>
             <h3 className="text-xl font-bold mb-4">Emergency</h3>
             <p className="text-white/80 mb-4">
-              For emergencies, dial <strong className="text-fire-red">9-1-1</strong>
+              For emergencies, dial <strong className="text-red-400">9-1-1</strong>
             </p>
             <p className="text-white/80 text-sm">
               For non-emergency inquiries, use our <Link href="/contact" className="text-fire-orange underline focus:outline-none focus:ring-2 focus:ring-fire-red rounded">contact form</Link>.

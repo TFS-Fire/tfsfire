@@ -38,7 +38,7 @@
   }
   
   .btn-secondary {
-    @apply bg-fire-orange text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-fire-orange focus:ring-offset-2;
+    @apply bg-fire-orange-dark text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-fire-orange focus:ring-offset-2;
   }
   
   .btn-outline {
