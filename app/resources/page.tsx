@@ -127,29 +127,21 @@ export default function SafetyResourcesPage() {
                 </div>
                 <h3 className="text-xl font-bold mb-2 text-fire-dark">{resource.title}</h3>
                 <p className="text-fire-dark/70 mb-4">{resource.description}</p>
-                {'href' in resource ? (
-                  <a
-                    href={resource.href}
-                    {...(resource.download && { download: 'emergency-contact-card.pdf' })}
-                    {...(!resource.download && { target: '_blank', rel: 'noopener noreferrer' })}
-                    className="text-fire-red hover:underline font-semibold flex items-center"
-                  >
-                    {resource.download ? 'Download' : 'Visit'} {resource.title}
-                    <span className="sr-only">
-                      {resource.type === 'PDF' ? ' (PDF)' : ''}
-                      {!resource.download ? ' (opens in new tab)' : ''}
-                    </span>
-                    <span className="ml-2" aria-hidden="true">→</span>
-                  </a>
-                ) : (
-                  <button className="text-fire-red hover:underline font-semibold flex items-center">
-                    Download {resource.title}
-                    <span className="sr-only">
-                      {resource.type === 'PDF' ? ' (PDF)' : ''}
-                    </span>
-                    <span className="ml-2" aria-hidden="true">→</span>
-                  </button>
-                )}
+                <a
+                  href={resource.href}
+                  {...('download' in resource && resource.download
+                    ? { download: 'emergency-contact-card.pdf' }
+                    : { target: '_blank', rel: 'noopener noreferrer' })}
+                  className="text-fire-red hover:underline font-semibold flex items-center"
+                >
+                  {'download' in resource && resource.download ? 'Download' : 'Visit'}{' '}
+                  {resource.title}
+                  <span className="sr-only">
+                    {resource.type === 'PDF' ? ' (PDF)' : ''}
+                    {!('download' in resource && resource.download) ? ' (opens in new tab)' : ''}
+                  </span>
+                  <span className="ml-2" aria-hidden="true">→</span>
+                </a>
               </div>
             ))}
           </div>
